@@ -9,23 +9,25 @@
     http://www.springframework.org/schema/context/spring-context.xsd
     ">
     <!--  These are our beans -->
-  <bean class="com.springcore.ci.Cert" name="cert">
-  <constructor-arg value="Telstra"/>
-  
-  </bean>
     
-  <bean class="com.springcore.ci.Person" name="person">
-  <constructor-arg value="Anjali"/>
-  <constructor-arg value="12"/>
-  <constructor-arg ref="cert"/>
-  </bean>
-  
-  <bean class="com.springcore.ci.Adition" name="add">
-  <constructor-arg value="34" type="int" index="1"/>
-  <constructor-arg value="12" type="int" index="0"/>
-  
-  </bean>
-  
+   
+    <context:annotation-config/>
+    <bean class="com.springcore.auto.wire.annotation.Address" name="addr1">
+    <property name="street" value="Temple Street"></property>
+    <property name="city" value="Bangalore"></property>
+    </bean>
+    
+    <bean class="com.springcore.auto.wire.annotation.Address" name="addr2">
+    <property name="street" value="Jankalyan Street"></property>
+    <property name="city" value="Mumbai"></property>
+    </bean>
+    
+    
+    <bean class="com.springcore.auto.wire.annotation.Emp" name="emp1">
+    
+    </bean>
+    
+    
     
     
     

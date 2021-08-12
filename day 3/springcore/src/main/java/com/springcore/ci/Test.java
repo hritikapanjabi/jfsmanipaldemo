@@ -12,6 +12,11 @@ public class Test {
 	
 	System.out.println(p);
 	
+	
+    Adition add1= (Adition)context.getBean("add");
+	add1.dosum();
+	
+	
 	}
 	
 }
