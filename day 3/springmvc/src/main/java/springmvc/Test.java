@@ -1,4 +1,4 @@
-package springmvc1;
+package springmvc;
 
 public class Test {
 
