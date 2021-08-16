@@ -11,7 +11,7 @@ String driver = "com.mysql.jdbc.Driver";
 String connectionUrl = "jdbc:mysql://localhost:3306/";
 String database = "Baby_Toy_Company";
 String userid = "root";
-String password = "vampire2412";
+String password = "root";
 try {
 Class.forName(driver);
 } catch (ClassNotFoundException e) {
@@ -51,7 +51,7 @@ resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 <tr>
-<td><%=resultSet.getString("Customer.Customer_Name") %></td>
+<td><%=resultSet.getString("Customer_Name") %></td>
 <td><%=resultSet.getInt("count") %></td>
 
 

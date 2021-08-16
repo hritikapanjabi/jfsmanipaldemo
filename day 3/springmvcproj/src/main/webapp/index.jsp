@@ -1,12 +1,4 @@
-<!-- <html>
-<body>
-<h2>Hello World!</h2>
-</body>
-</html>
-<!DOCTYPE html>
-  -->
-  
-  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -32,14 +24,17 @@ ResultSet resultSet = null;
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Q9</title>
+<title>Q10</title>
 </head>
 <body>
-<h1>Q9 The customers who have availed rental more than two toys currently </h1>
+<h1>Q10 All the customers who have rented at least 1 toy, and details of toy, rental return date. </h1>
 <table border="1">
 <tr>
 <td>Customer Name</td>
-<td>Count</td>
+<td>Toy ID</td>
+<td>Toy Name</td>
+<td>Toy Type</td>
+<td>Toy Rental End Date</td>
 
 
 
@@ -49,7 +44,7 @@ ResultSet resultSet = null;
 try{
 connection = DriverManager.getConnection(connectionUrl+database, userid, password);
 statement=connection.createStatement();
-String sql = "Select Customer.Customer_Name, Count(Toy_Rental.Customer_ID) as count From Customer JOIN Toy_Rental on Toy_Rental.Customer_ID=Customer.Customer_ID group by Toy_Rental.Customer_ID HAVING Count(Toy_Rental.Customer_ID)>2";
+String sql ="Select Customer.Customer_Name ,Toy.Toy_Id,Toy.Toy_Name,Toy.Toy_Type,Toy_Rental.Rental_End_Date FROM Toy_Rental join Customer on Toy_Rental.Customer_ID = Customer.Customer_Id join Toy on Toy.Toy_Id = Toy_Rental.Toy_ID";
 
 
 
@@ -59,8 +54,10 @@ while(resultSet.next()){
 %>
 <tr>
 <td><%=resultSet.getString("Customer.Customer_Name") %></td>
-<td><%=resultSet.getInt("count") %></td>
-
+<td><%=resultSet.getInt("Toy.Toy_Id") %></td>
+<td><%=resultSet.getString("Toy.Toy_Name") %></td>
+<td><%=resultSet.getString("Toy.Toy_Type") %></td>
+<td><%=resultSet.getDate("Toy_Rental.Rental_End_Date") %></td>
 
 
 </tr>
@@ -74,7 +71,3 @@ e.printStackTrace();
 </table>
 </body>
 </html>
-
-
-
-
