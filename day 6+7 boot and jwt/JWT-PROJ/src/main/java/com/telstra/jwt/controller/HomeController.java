@@ -35,7 +35,6 @@ public class HomeController {
     @PostMapping("/authenticate")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
-        // validated with spring security
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -43,11 +42,12 @@ public class HomeController {
                             jwtRequest.getPassword()
                     )
             );
-        } catch (BadCredentialsException e){
-            throw   new Exception("Invalid Credentials", e);
+        } catch (BadCredentialsException e) {
+            throw new Exception("INVALID_CREDENTIALS", e);
         }
 
-        final UserDetails userDetails = userService.loadUserByUsername(jwtRequest.getUsername());
+        final UserDetails userDetails
+                = userService.loadUserByUsername(jwtRequest.getUsername());
 
         final String token =
                 jwtUtility.generateToken(userDetails);
